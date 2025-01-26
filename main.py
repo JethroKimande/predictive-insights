@@ -55,7 +55,7 @@ def generate_correlation_plot(data):
     corr = data[numeric_features].corr()
     
     # Plot the heatmap
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(16, 12))
     sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1, center=0)
     plt.title('Correlation Matrix for Variables')
     plt.tight_layout()
