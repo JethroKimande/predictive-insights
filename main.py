@@ -47,6 +47,22 @@ def load_and_prepare_data():
         logger.error(f"An error occurred while preparing data: {e}")
         raise
 
+def generate_correlation_plot(data):
+    # Select relevant numerical features for correlation
+    numeric_features = data.select_dtypes(include=['int64', 'float64']).columns
+    
+    # Compute the correlation matrix
+    corr = data[numeric_features].corr()
+    
+    # Plot the heatmap
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1, center=0)
+    plt.title('Correlation Matrix for Variables')
+    plt.tight_layout()
+    plt.savefig('correlation_matrix.png')
+    plt.close()
+    logger.info("Correlation plot saved as correlation_matrix.png")
+
 def train_and_evaluate_logistic_regression(X_train, y_train, X_test, y_test, preprocessor):
     try:
         logistic_pipeline = Pipeline(steps=[
@@ -177,7 +193,7 @@ def generate_html(lr_auc, ann_auc):
 
     <h2>Data Preparation and Exploratory Data Analysis (EDA)</h2>
     <p>Our dataset includes variables such as socio-economic status, age, gender, disability, demographic factors, number of siblings, and parents' education levels, offering a comprehensive view of influences on student learning. Data preprocessing involved cleaning to handle missing values, standardizing entries for analysis, and normalizing numerical features using StandardScaler while encoding categorical data with OneHotEncoder. A 70:30 split for training and testing was used, with stratification on the target variable to ensure balanced datasets. EDA included descriptive statistics and visualization of key variables' relationships with Year3_Writing_At_Risk, revealing significant correlations, e.g., consistent performance in literacy assessments like Burt reading tests.</p>
-    <p>Key insights from the correlation matrix (Figure 1) showed strong positive correlations between different time points of literacy assessments, indicating stable student performance over time. Negative correlations suggested that higher scores in early assessments reduce the risk of writing difficulties in Year 3.</p>
+    <p>Key insights from the correlation matrix showed strong positive correlations between different time points of literacy assessments, indicating stable student performance over time. Negative correlations suggested that higher scores in early assessments reduce the risk of writing difficulties in Year 3.</p>
     <img src="correlation_matrix.png" alt="Correlation Matrix for Variables">
 
     <h2>Model Development</h2>
@@ -217,7 +233,7 @@ def generate_html(lr_auc, ann_auc):
     </ul>
 
     <footer>
-        <p>© {datetime.now().year} Your Name</p>
+        <p>Jethro Kimanda © {datetime.now().year} </p>
     </footer>
 </body>
 </html>
