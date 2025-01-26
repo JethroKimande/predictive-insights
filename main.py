@@ -248,6 +248,7 @@ def main():
         logistic_model, lr_auc = train_and_evaluate_logistic_regression(X_train, y_train, X_test, y_test, preprocessor)
         ann_model, ann_auc = train_and_evaluate_ann(X_train, y_train, X_test, y_test, preprocessor)
         
+        generate_correlation_plot(data)
         perform_clustering(data)
         generate_html(lr_auc, ann_auc)
         logger.info("HTML file generated successfully")
