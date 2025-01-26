@@ -233,7 +233,7 @@ def generate_html(lr_auc, ann_auc):
     </ul>
 
     <footer>
-        <p>Jethro Kimanda © {datetime.now().year} </p>
+        <p>Jethro Kimande © {datetime.now().year} </p>
     </footer>
 </body>
 </html>
