@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
-from sklearn.neural_network import MLPClassifiergit push origin main  # Push to the 'main' branch. Change 'main' to your working branch if different.
+from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report, roc_auc_score, roc_curve
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
